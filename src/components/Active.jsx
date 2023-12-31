@@ -5,6 +5,7 @@ export default function Active() {
     return (
         <div>
             <div>
+                {/* <h2 className={tw `font-afcad`}>Active</h2> */}
                 <h2>Active</h2>
                 <p>your current todos</p>
             </div>
