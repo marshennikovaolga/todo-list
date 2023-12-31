@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import { tw } from "twind";
 import { Routes, Route } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faCheck, faTrash, faStar } from '@fortawesome/free-solid-svg-icons';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Tooltip from "./Tooltip";
+import TodoHeader from "./TodoHeader";
+
 
 export default function List() {
     const [todos, setTodos] = useState([]);
@@ -27,6 +29,14 @@ export default function List() {
 
     const deleteTodo = (indexDelete) => {
         setTodos(todos.filter((_, index) => index !== indexDelete));
+    };
+
+    const starTodo = (index) => {
+        const updatedTodos = [...todos];
+        const moveTodo = updatedTodos.splice(index, 1)[0];
+        moveTodo.starred = !moveTodo.starred;
+        updatedTodos.unshift(moveTodo);
+        setTodos(updatedTodos);
     };
 
     const inputValid = newTodo.trim().length > 4;
@@ -53,7 +63,7 @@ export default function List() {
                             type="text"
                             value={newTodo}
                             onChange={(e) => setNewTodo(e.target.value)}
-                            placeholder="create a new todo"
+                            placeholder="create a new todo..."
                             className={tw`w-full p-2 border border-black-400 rounded mb-2`}
                         />
                         <DatePicker
@@ -86,11 +96,17 @@ export default function List() {
                     {todos.map((todo, index) => (
                         <li key={index} className={tw`list-none mb-2 border border-gray-300 rounded p-4 shadow-md flex items-center justify-between`}>
                             <div>
-                                {todo.time} {todo.title && `- ${todo.title}`}
+                                {todo.time} {todo.title && `${todo.title}`}
                             </div>
                             <div className={tw`flex items-center`}>
                                 <button
-                                    className={tw`px-2 py-1 ml-2 bg-pink-300 text-white rounded text-sm`}
+                                    className={tw`px-2 py-1 ml-2 ${todo.starred ? 'bg-yellow-400' : 'bg-gray-300'} text-white rounded text-sm`}
+                                    onClick={() => starTodo(index)}
+                                >
+                                    <FontAwesomeIcon icon={faStar} />
+                                </button>
+                                <button
+                                    className={tw`px-2 py-1 ml-2 bg-green-800 text-white rounded text-sm`}
                                 >
                                     <FontAwesomeIcon icon={faCheck} />
                                 </button>
@@ -111,8 +127,16 @@ export default function List() {
                 closeTooltip={() => setIsOpen(false)}
             />
             <Routes>
-                <Route path='/completed' />
-                <Route path="/active" />
+                <Route path='/completed' element={
+                    <>
+                        <TodoHeader />
+                    </>}
+                />
+                <Route path='/active' element={
+                    <>
+                        <TodoHeader />
+                    </>}
+                />
             </Routes>
         </>
     );

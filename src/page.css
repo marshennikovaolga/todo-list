@@ -1,6 +1,8 @@
 .page {
+    font-family: 'Afcad', 'Chillax';
     background-color: rgb(245, 241, 241);
     width: 70%;
+    font-size: 18px;
     margin: 0 auto;
     padding: 0;
     box-sizing: border-box;
@@ -9,7 +11,7 @@
 
 @media screen and (max-width: 600px) {
     .page {
-        font-size: 18px;
+        font-size: 16px;
         width: 100%;
     }
   }

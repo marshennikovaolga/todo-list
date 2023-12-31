@@ -2,7 +2,6 @@ import React from "react";
 import { tw } from "twind";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faTrash } from '@fortawesome/free-solid-svg-icons';
-// import { useState} from "react";
 
 export default function Tooltip({ openedTooltip, onDelete, closeTooltip }) {
 
