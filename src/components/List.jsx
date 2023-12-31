@@ -7,6 +7,9 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Tooltip from "./Tooltip";
 import TodoHeader from "./TodoHeader";
+import Completed from "./Completed.jsx";
+import Active from "./Active.jsx";
+
 
 
 export default function List() {
@@ -129,12 +132,14 @@ export default function List() {
             <Routes>
                 <Route path='/completed' element={
                     <>
-                        <TodoHeader />
+                        <TodoHeader/>
+                        <Completed/>
                     </>}
                 />
                 <Route path='/active' element={
                     <>
-                        <TodoHeader />
+                        <TodoHeader/>
+                        <Active/>
                     </>}
                 />
             </Routes>
