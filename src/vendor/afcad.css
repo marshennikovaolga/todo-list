@@ -1,0 +1,7 @@
+@font-face {
+    font-family: 'Afcad';
+    font-style:  normal;
+    font-weight: 200, 400;
+    font-display: swap;
+    src: url(../vendor/Afacad-Regular.ttf) format("ttf"),
+  }
