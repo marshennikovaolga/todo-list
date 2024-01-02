@@ -8,15 +8,12 @@ import "react-datepicker/dist/react-datepicker.css";
 import Tooltip from "./Tooltip";
 import Completed from "./Completed.jsx";
 import Active from "./Active.jsx";
-import { useNavigate } from "react-router-dom";
 
 export default function List({ todos, setTodos }) {
-    const navigate = useNavigate();
     const [newTodo, setNewTodo] = useState('');
     const [todoTime, setTodoTime] = useState(null);
     const [deleteIndex, setDeleteIndex] = useState(null);
-    const [isOpen, setIsOpen] = useState(false); //tooltip
-    const [completedTodos, setCompletedTodos] = useState([]);
+    const [isOpen, setIsOpen] = useState(false);
 
     const inputValid = newTodo.trim().length > 4;
 
@@ -37,7 +34,6 @@ export default function List({ todos, setTodos }) {
         const updatedTodos = [...todos];
         const deletedTodo = updatedTodos.splice(indexDelete, 1)[0];
         if (deletedTodo.completed) {
-            setCompletedTodos([...completedTodos, deletedTodo]);
         }
         setTodos(updatedTodos);
     };
@@ -47,21 +43,11 @@ export default function List({ todos, setTodos }) {
         const updatedTodo = { ...updatedTodos[index] };
         updatedTodo.starred = !updatedTodo.starred;
         updatedTodos.splice(index, 1);
-        if (updatedTodo.starred && updatedTodo.completed) {
-            setCompletedTodos([...completedTodos, updatedTodo]);
-        } else {
+        if (updatedTodo.starred) {
             updatedTodos.unshift(updatedTodo);
         }
         setTodos(updatedTodos);
     };
-    
-    // const completeTodo = (index) => {
-    //     const updatedTodos = [...todos];
-    //     const completedTodo = { ...updatedTodos[index] };
-    //     completedTodo.completed = true;
-    //     setCompletedTodos([...completedTodos, completedTodo]);
-    //     setTodos(updatedTodos);
-    // };
 
     const completeTodo = (index) => {
         const updatedTodos = [...todos];
@@ -69,7 +55,6 @@ export default function List({ todos, setTodos }) {
         completedTodo.completed = true;
         updatedTodos[index] = completedTodo;
         setTodos(updatedTodos);
-        setCompletedTodos([...completedTodos, completedTodo]);
     };
 
     const formatTime = (time) => {
@@ -154,8 +139,9 @@ export default function List({ todos, setTodos }) {
                 closeTooltip={() => setIsOpen(false)}
             />
             <Routes>
-                <Route path='/completed' element={<Completed todos={completedTodos} />}/>
-                <Route path='/active' element={<Active todos={todos.filter(todo => !todo.completed)} />}/>
+                {/* <Route path='/completed' element={<Completed todos={completedTodos} />} /> */}
+                <Route path='/completed' element={<Completed todos={todos.filter(todo => todo.completed)} />} />
+                <Route path='/active' element={<Active todos={todos.filter(todo => !todo.completed)} />} />
             </Routes>
         </>
     );
