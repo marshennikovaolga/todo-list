@@ -11,9 +11,9 @@ export default function Header() {
     const isActiveRoute = location.pathname === '/active';
     const isAllRoute = location.pathname === '/';
 
-    const completedColor = isCompletedRoute ? 'text-green-500' : 'text-black';
-    const activeColor = isActiveRoute ? 'text-green-500' : 'text-black';
-    const allColor = isAllRoute ? 'text-green-500' : 'text-black';
+    const completedColor = isCompletedRoute ? 'text-green-500 font-extrabold' : 'text-black';
+    const activeColor = isActiveRoute ? 'text-green-500 font-extrabold' : 'text-black';
+    const allColor = isAllRoute ? 'text-green-500 font-extrabold' : 'text-black';
 
     return (
         <div className={tw`text-center leading-8 pt-4 mx-auto`}>

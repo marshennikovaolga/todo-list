@@ -3,7 +3,16 @@ import { tw } from "twind";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faTrash, faStar } from '@fortawesome/free-solid-svg-icons';
 
-export default function Completed({ todos }) {
+export default function Completed({ todos, setTodos, starTodo, deleteTodo }) {
+
+    const completeTodo = (index) => {
+        const updatedTodos = [...todos];
+        const completedTodo = { ...updatedTodos[index] };
+        completedTodo.completed = true;
+        updatedTodos[index] = completedTodo;
+        setTodos(updatedTodos);
+    };
+
     return (
         <>
             <div className={tw`max-w-md mx-auto p-4`}>
@@ -30,7 +39,7 @@ export default function Completed({ todos }) {
                                 </button>
                                 <button
                                     className={tw`px-2 py-1 ml-2 bg-black text-white rounded text-sm`}
-                                    onClick={() => openTooltip(index)}
+                                    onClick={() => deleteTodo(index)}
                                 >
                                     <FontAwesomeIcon icon={faTrash} />
                                 </button>

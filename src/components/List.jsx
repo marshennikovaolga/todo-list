@@ -8,8 +8,9 @@ import "react-datepicker/dist/react-datepicker.css";
 import Tooltip from "./Tooltip";
 import Completed from "./Completed.jsx";
 import Active from "./Active.jsx";
+import { useSpring, animated } from 'react-spring';
 
-export default function List({ todos, setTodos }) {
+export default function List({ todos, setTodos, deleteTodo, starTodo, completeTodo }) {
     const [newTodo, setNewTodo] = useState('');
     const [todoTime, setTodoTime] = useState(null);
     const [deleteIndex, setDeleteIndex] = useState(null);
@@ -30,32 +31,6 @@ export default function List({ todos, setTodos }) {
         }
     };
 
-    const deleteTodo = (indexDelete) => {
-        const updatedTodos = [...todos];
-        const deletedTodo = updatedTodos.splice(indexDelete, 1)[0];
-        if (deletedTodo.completed) {
-        }
-        setTodos(updatedTodos);
-    };
-
-    const starTodo = (index) => {
-        const updatedTodos = [...todos];
-        const updatedTodo = { ...updatedTodos[index] };
-        updatedTodo.starred = !updatedTodo.starred;
-        updatedTodos.splice(index, 1);
-        if (updatedTodo.starred) {
-            updatedTodos.unshift(updatedTodo);
-        }
-        setTodos(updatedTodos);
-    };
-
-    const completeTodo = (index) => {
-        const updatedTodos = [...todos];
-        const completedTodo = { ...updatedTodos[index] };
-        completedTodo.completed = true;
-        updatedTodos[index] = completedTodo;
-        setTodos(updatedTodos);
-    };
 
     const formatTime = (time) => {
         const options = { hour: 'numeric', minute: 'numeric' };
@@ -117,7 +92,7 @@ export default function List({ todos, setTodos }) {
                                     <FontAwesomeIcon icon={faStar} />
                                 </button>
                                 <button
-                                    className={tw`px-2 py-1 ml-2 text-white rounded text-sm ${todo.completed ? 'bg-green-400' : 'bg-green-800'}`}
+                                    className={tw`px-2 py-1 ml-2 text-white rounded text-sm ${todo.completed ? 'bg-green-500' : 'bg-green-800'}`}
                                     onClick={() => completeTodo(index)}
                                 >
                                     <FontAwesomeIcon icon={faCheck} />
@@ -139,9 +114,12 @@ export default function List({ todos, setTodos }) {
                 closeTooltip={() => setIsOpen(false)}
             />
             <Routes>
-                {/* <Route path='/completed' element={<Completed todos={completedTodos} />} /> */}
-                <Route path='/completed' element={<Completed todos={todos.filter(todo => todo.completed)} />} />
-                <Route path='/active' element={<Active todos={todos.filter(todo => !todo.completed)} />} />
+                <Route path='/completed'
+                    element={<Completed todos={todos.filter(todo => todo.completed)}
+                        starTodo={starTodo} deleteTodo={deleteTodo} />} />
+                <Route path='/active'
+                    element={<Active todos={todos.filter(todo => !todo.completed)}
+                        starTodo={starTodo} deleteTodo={deleteTodo} />} />
             </Routes>
         </>
     );
