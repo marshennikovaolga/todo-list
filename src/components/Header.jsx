@@ -26,9 +26,12 @@ export default function Header() {
             </a>
             <nav>
                 <ul className={tw`flex flex-col`}>
-                    <li className={tw`${completedColor} font-chillax pr-6 text-right`}><NavLink to="/completed">Completed</NavLink></li>
-                    <li className={tw`${activeColor} font-chillax pr-6 text-right`}><NavLink to="/active">Active</NavLink></li>
-                    <li className={tw`${allColor} font-chillax pr-6 text-right`}><NavLink to="/" end>All</NavLink></li>
+                    <li className={tw`${completedColor} font-chillax pr-6 text-right`}>
+                        <NavLink to="/completed">Completed</NavLink></li>
+                    <li className={tw`${activeColor} font-chillax pr-6 text-right`}>
+                        <NavLink to="/active">Active</NavLink></li>
+                    <li className={tw`${allColor} font-chillax pr-6 text-right`}>
+                        <NavLink to="*" end>All</NavLink></li>
                 </ul>
             </nav>
             <h1 className={tw`font-afcad py-12 text-center text-3xl`}>TODO list</h1>

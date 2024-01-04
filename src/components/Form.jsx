@@ -5,6 +5,7 @@ import List from "./List";
 import Completed from "./Completed";
 import Active from "./Active";
 import { useState } from "react";
+// import { ApolloClient, ApolloProvider, useQuery, useMutation, gql } from '@apollo/client';
 
 export default function Form() {
     const [todos, setTodos] = useState([]);
@@ -12,7 +13,7 @@ export default function Form() {
     const deleteTodo = (indexDelete) => {
         const updatedTodos = [...todos];
         updatedTodos.splice(indexDelete, 1);
-    setTodos(updatedTodos);
+        setTodos(updatedTodos);
     };
 
     const starTodo = (index) => {
@@ -27,12 +28,12 @@ export default function Form() {
                 }
                 return todo;
             });
-    
+
             if (updatedTodos[index].movedToTop) {
                 const movedItem = updatedTodos.splice(index, 1)[0];
                 updatedTodos.unshift(movedItem);
             }
-    
+
             return updatedTodos;
         });
     };
@@ -49,13 +50,14 @@ export default function Form() {
         <>
             <Header />
             <Routes>
-                <Route path='*' element={<List todos={todos} setTodos={setTodos} deleteTodo={deleteTodo} starTodo={starTodo} completeTodo={completeTodo} />} />
+                <Route path='*' element={<List todos={todos} setTodos={setTodos}
+                    deleteTodo={deleteTodo} starTodo={starTodo} completeTodo={completeTodo} />} />
                 <Route path="/completed"
-                element={<Completed todos={todos.filter(todo => todo.completed)}
-                setTodos={setTodos} starTodo={starTodo} deleteTodo={deleteTodo} />} />
+                    element={<Completed todos={todos.filter(todo => todo.completed)}
+                        setTodos={setTodos} starTodo={starTodo} deleteTodo={deleteTodo} />} />
                 <Route path="/active"
-                element={<Active todos={todos.filter(todo => !todo.completed)}
-                setTodos={setTodos} starTodo={starTodo} deleteTodo={deleteTodo} />} />
+                    element={<Active todos={todos.filter(todo => !todo.completed)}
+                        setTodos={setTodos} starTodo={starTodo} deleteTodo={deleteTodo} />} />
             </Routes>
         </>
     )

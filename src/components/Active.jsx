@@ -2,7 +2,6 @@ import React from "react";
 import { tw } from "twind";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faTrash, faStar } from '@fortawesome/free-solid-svg-icons';
-import List from "./List";
 
 export default function Active({ todos, setTodos, starTodo, deleteTodo }) {
 
