@@ -5,6 +5,7 @@ import List from "./List";
 import Completed from "./Completed";
 import Active from "./Active";
 import { useState } from "react";
+import ProtectedRoute from '../utils/ProtectedRoute';
 // import { ApolloClient, ApolloProvider, useQuery, useMutation, gql } from '@apollo/client';
 
 export default function Form() {
@@ -50,8 +51,12 @@ export default function Form() {
         <>
             <Header />
             <Routes>
-                <Route path='*' element={<List todos={todos} setTodos={setTodos}
-                    deleteTodo={deleteTodo} starTodo={starTodo} completeTodo={completeTodo} />} />
+                {/* <Route path='*' element={<List todos={todos} setTodos={setTodos}
+                    deleteTodo={deleteTodo} starTodo={starTodo} completeTodo={completeTodo} />} /> */}
+                    <ProtectedRoute
+                    path="*"
+                    element={<List todos={todos} setTodos={setTodos} deleteTodo={deleteTodo} starTodo={starTodo} completeTodo={completeTodo} />}
+                />
                 <Route path="/completed"
                     element={<Completed todos={todos.filter(todo => todo.completed)}
                         setTodos={setTodos} starTodo={starTodo} deleteTodo={deleteTodo} />} />

@@ -14,9 +14,9 @@ export default function Tooltip({ openedTooltip, onDelete, closeTooltip }) {
                 }}>
                 <FontAwesomeIcon icon={faTimes} />
             </button>
-            <div className={tw`flex flex-col justify-between items-center w-full`}>
-                <h1 className={tw('text-black')} >are you sure?</h1>
-                <button className={tw`px-1 py-1 rounded bg-gray-800 text-white`}
+            <div className={tw`flex flex-col justify-between items-center w-full scale-300`}>
+                <h1 className={tw('text-black p-2')} >are you sure?</h1>
+                <button className={tw`px-2 py-1 m-2 rounded bg-gray-800 text-white`}
                     type="button" aria-label="submit"
                     onClick={() => {
                         onDelete();

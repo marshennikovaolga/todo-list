@@ -8,7 +8,6 @@ import "react-datepicker/dist/react-datepicker.css";
 import Tooltip from "./Tooltip.jsx";
 import Completed from "./Completed.jsx";
 import Active from "./Active.jsx";
-import { useSpring, animated } from 'react-spring';
 
 export default function List({ todos, setTodos, deleteTodo, starTodo, completeTodo }) {
     const [newTodo, setNewTodo] = useState('');
@@ -30,7 +29,6 @@ export default function List({ todos, setTodos, deleteTodo, starTodo, completeTo
             setTodoTime(null);
         }
     };
-
 
     const formatTime = (time) => {
         const options = { hour: 'numeric', minute: 'numeric' };
