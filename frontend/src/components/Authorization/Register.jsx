@@ -17,5 +17,5 @@ export default function Register() {
         href: '/login'
     };
 
-    return <FormAuth onSubmit={handleRegister} title="Register" buttonTitle='sign up' anotherButton={anotherButton} />;
+    return <FormAuth onSubmit={handleRegister} title="Registration" buttonTitle='sign up' anotherButton={anotherButton} />;
 }

@@ -15,7 +15,8 @@ export default function FormAuth({ title, buttonTitle, anotherButton, onSubmit }
 
     return (
         <div className={tw`text-center leading-8 pt-4 mx-auto`}>
-            <h1 className={tw`font-afcad py-12 text-center text-3xl`}>{title}</h1>
+            <h1 className={tw`font-afcad text-center text-3xl py-[2em]`}>TODO LIST</h1>
+            <h2 className={tw`font-afcad py-5 text-center text-3xl`}>{title}</h2>
             <form className={tw`mt-4`} onSubmit={handleSubmit}>
                 <div className={tw`mb-4`}>
                     <label htmlFor="email" className={tw`block text-gray-700 text-sm font-bold mb-2`}>
