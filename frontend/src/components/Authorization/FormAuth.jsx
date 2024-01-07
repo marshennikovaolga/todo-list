@@ -1,8 +1,9 @@
 import React from 'react';
 import { tw } from "twind";
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
-export default function FormAuth({ title, buttonTitle, onSubmit }) {
+export default function FormAuth({ title, buttonTitle, anotherButton, onSubmit }) {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -37,18 +38,31 @@ export default function FormAuth({ title, buttonTitle, onSubmit }) {
                         type="password"
                         id="password"
                         required
-                        className={tw`w-[22em] shadow appearance-none border rounded py-2 px-3 text-sm text-gray-800
+                        className={tw`w-[22em] mb-[3em] shadow appearance-none border rounded py-2 px-3 text-sm text-gray-800
                         leading-tight focus:outline-none focus:shadow-outline`}
                         placeholder="enter your password"
                     />
                 </div>
-                <button
-                    type="submit"
-                    className={tw`bg-black hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline`}
-                >
-                    {buttonTitle}
-                </button>
+                <div className={tw`flex items-center justify-center`}>
+                    <button
+                        type="submit"
+                        className={tw`bg-black hover:bg-blue-500 text-white font-bold py-2 px-4
+                        rounded focus:outline-none focus:shadow-outline mr-2`}
+                    >
+                        {buttonTitle}
+                    </button>
+                    <Link to={anotherButton.href}>
+                        <button
+                            type="button"
+                            className={tw`bg-blue-500 hover:bg-black text-white font-bold py-2 px-4
+                        rounded focus:outline-none focus:shadow-outline ml-2`}
+                        >
+                            {anotherButton.title}
+                        </button>
+                    </Link>
+                </div>
             </form>
         </div>
-    )
-}
+    );
+
+}    

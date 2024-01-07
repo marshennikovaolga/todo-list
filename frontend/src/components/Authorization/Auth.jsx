@@ -1,6 +1,7 @@
 import React from "react";
-import { loginUser } from '../../utils/api';
 import FormAuth from "./FormAuth";
+import { loginUser } from '../../utils/api';
+import { Link } from 'react-router-dom';
 
 export default function Auth({ setLoggedIn }) {
 
@@ -13,5 +14,10 @@ export default function Auth({ setLoggedIn }) {
         }
     };
 
-    return <FormAuth onSubmit={handleLogin} title='Authorize, please' buttonTitle='sign in' />;
+    const anotherButton = {
+        title: 'create an account',
+        href: '/register'
+    };
+
+    return <FormAuth onSubmit={handleLogin} title='Authorize, please' buttonTitle='sign in' anotherButton={anotherButton}/>;
 }

@@ -12,5 +12,10 @@ export default function Register() {
         }
     };
 
-    return <FormAuth onSubmit={handleRegister} title="Register" buttonTitle='sign up' />;
+    const anotherButton = {
+        title: 'sign in',
+        href: '/login'
+    };
+
+    return <FormAuth onSubmit={handleRegister} title="Register" buttonTitle='sign up' anotherButton={anotherButton} />;
 }
